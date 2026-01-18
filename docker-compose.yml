@@ -1,0 +1,32 @@
+services:
+  nginx:
+    image: nginx:stable
+    container_name: f41_nginx
+    ports:
+      - "8080:80"
+      - "8443:443"
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./nginx-selfsigned.crt:/etc/nginx/ssl/nginx-selfsigned.crt:ro
+      - ./nginx-selfsigned.key:/etc/nginx/ssl/nginx-selfsigned.key:ro
+      - ./.htpasswd:/etc/nginx/.htpasswd:ro
+      - ./webdata:/usr/share/nginx/html:rw
+    restart: unless-stopped
+    networks:
+      - webnet
+
+  sftp:
+    image: atmoz/sftp:latest
+    container_name: f41_sftp
+    ports:
+      - "2222:22"
+    volumes:
+      - ./webdata:/home/sftpuser/upload:rw
+    command: sftpuser:sftppass:1001:1001:upload
+    restart: unless-stopped
+    networks:
+      - webnet
+
+networks:
+  webnet:
+    driver: bridge

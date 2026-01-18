@@ -1,0 +1,22 @@
+# Sensitive files
+.htpasswd
+*.key
+
+# Certificates (optional - can be regenerated)
+# Uncomment if you don't want to commit certificates
+# *.crt
+
+# Temporary files
+*.tmp
+*.log
+*.swp
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.code-workspace

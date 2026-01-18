@@ -1,0 +1,148 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Dimension by HTML5 UP</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        #wrapper {
+            max-width: 1200px;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        header {
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+        
+        h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        
+        p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        ul {
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        ul li {
+            padding: 10px;
+            margin: 5px 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+        }
+        
+        .button {
+            display: inline-block;
+            padding: 12px 30px;
+            margin: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s;
+            border: 2px solid white;
+        }
+        
+        .button:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .links {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <header>
+            <h1>Dimension</h1>
+            <p>A fully responsive site template designed by HTML5 UP</p>
+        </header>
+        
+        <div class="content">
+            <h2>Welcome to the Main Site</h2>
+            <p>This is a multi-site Nginx deployment demonstration. The site is served through Docker containers with SSL/TLS encryption and supports multiple paths.</p>
+            
+            <h3>Features</h3>
+            <ul>
+                <li>Docker containerization with Nginx</li>
+                <li>HTTPS with self-signed certificates</li>
+                <li>Multi-site configuration (/, /reloj, /admin)</li>
+                <li>SFTP file transfer support</li>
+                <li>HTTP to HTTPS redirect (301)</li>
+                <li>Basic authentication for admin area</li>
+            </ul>
+            
+            <div class="links">
+                <a href="/reloj" class="button">View Clock App</a>
+                <a href="/admin" class="button">Admin Area (Protected)</a>
+            </div>
+            
+            <h3>Lists Examples</h3>
+            <h4>Default List</h4>
+            <ul>
+                <li>Dolor pulvinar etiam.</li>
+                <li>Sagittis adipiscing.</li>
+                <li>Felis enim feugiat.</li>
+            </ul>
+            
+            <h4>Alternate</h4>
+            <ul class="alt">
+                <li>Dolor pulvinar etiam.</li>
+                <li>Sagittis adipiscing.</li>
+                <li>Felis enim feugiat.</li>
+            </ul>
+            
+            <h4>Ordered</h4>
+            <ol style="list-style-position: inside;">
+                <li>Dolor pulvinar etiam.</li>
+                <li>Etiam vel felis viverra.</li>
+                <li>Felis enim feugiat.</li>
+                <li>Dolor pulvinar etiam.</li>
+                <li>Etiam vel felis lorem.</li>
+                <li>Felis enim et feugiat.</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>
