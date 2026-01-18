@@ -22,6 +22,8 @@ services:
       - "2222:22"
     volumes:
       - ./webdata:/home/sftpuser/upload:rw
+    # NOTE: For production, use Docker secrets or environment variables
+    # This is hardcoded for educational/development purposes
     command: sftpuser:sftppass:1001:1001:upload
     restart: unless-stopped
     networks:

@@ -1,6 +1,7 @@
 # Sensitive files
 .htpasswd
 *.key
+.env
 
 # Certificates (optional - can be regenerated)
 # Uncomment if you don't want to commit certificates
