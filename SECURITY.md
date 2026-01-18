@@ -85,19 +85,15 @@ add_header Referrer-Policy "strict-origin-when-cross-origin";
 add_header Permissions-Policy "geolocation=(), microphone=()";
 ```
 
-## Default Credentials (Change for Production!)
+## Default Credentials (Educational Environment Only)
 
-### Admin Area
-- Username: `admin`
-- Password: `Admin1234!`
-- File: `.htpasswd` (not in version control)
+**⚠️ IMPORTANT**: These credentials are provided for educational purposes only. In a real environment, you should:
+1. Generate strong, unique passwords
+2. Never commit credentials to version control
+3. Use credential management tools
 
-### SFTP Access
-- Username: `sftpuser`
-- Password: `sftppass`
-- Port: 2222
-
-**⚠️ WARNING**: Change all default credentials before deploying to production!
+For this educational setup, the default credentials are documented in QUICKSTART.md. 
+**Change these immediately if deploying anywhere beyond localhost!**
 
 ## Compliance Notes
 
