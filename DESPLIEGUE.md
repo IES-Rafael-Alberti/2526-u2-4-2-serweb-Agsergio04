@@ -9,57 +9,71 @@ Este documento recopila todas las evidencias y respuestas de la practica.
 ### Fase 1: Instalacion y configuracion
 
 1) Servicio Nginx activo
-- Que demuestra:
-- Comando:
-- Evidencia:
+- Que demuestra:![Evidencias Docker](evidencias/evidencias-docker.png)
+- Comando: docker-compose ps 
+- Evidencia: captura de `docker compose ps` (desde fuera) o `service nginx status` (desde dentro del contenedor) mostrando el servicio activo. Nota: `systemctl` no suele funcionar dentro de Docker.
 
 2) Configuracion cargada
-- Que demuestra:
+- Que demuestra: ![Evidencias configuracion](evidencias/evidencias-configuracion_nginx.png)
 - Comando:
-- Evidencia:
+  - docker exec 2526-u2-4-2serweb-agsergio04-nginx-1 ls -l /etc/nginx/conf.d/
+  - docker exec 2526-u2-4-2serweb-agsergio04-nginx-1 cat /etc/nginx/conf.d/default.conf
+- Evidencia: captura listando el directorio de configuracion dentro del contenedor (ej: `ls -l /etc/nginx/conf.d/` o `sites-enabled` segun la imagen usada) donde se vea tu archivo `.conf`.
+
 
 3) Resolucion de nombres
-- Que demuestra:
-- Evidencia:
+- Que demuestra:![Evidencias Resolucion Nombres](evidencias/evidencias-web-con-nombre.png)
+- Evidencia: captura del navegador con la barra de direcciones mostrando `http://nombre_web` (no la IP) y la pagina cargada.
+
 
 4) Contenido Web
 - Que demuestra:
-- Evidencia:
+![Evidencias Resolucion Nombres](evidencias/evidencias-web-con-nombre.png)
+![Evidencias Reloj](evidencias/evidencias-web-con-nombre-reloj.png)
+- Evidencia: la misma captura anterior, pero debe verse claramente el diseno de la web importada de Cloud Academy.
+
 
 ### Fase 2: Transferencia SFTP (Filezilla)
 
 5) Conexion SFTP exitosa
-- Que demuestra:
-- Evidencia:
+- Que demuestra:![Conexion FilleZilla](evidencias/evidencia-conexion-exitosa-FilleZilla.png)
+- Evidencia: captura de Filezilla mostrando en el panel de registro "Status: Connected to..." y en el panel derecho el listado de carpetas remoto. Nota: en Docker la ruta suele ser `/home/usuario/upload`, no `/var/www`.
+
 
 6) Permisos de escritura
-- Que demuestra:
-- Evidencia:
+- Que demuestra:![](evidencias/evidencia-permiso-de-escritura.png)
+- Evidencia: captura de Filezilla mostrando la transferencia completada o los archivos ya presentes en el servidor remoto.
+
 
 ### Fase 3: Infraestructura Docker
 
 7) Contenedores activos
 - Que demuestra:
 - Comando:
-- Evidencia:
+- Evidencia: captura de `docker compose ps` donde se vean los dos servicios con estado Up y los puertos `0.0.0.0:8080->80/tcp` y `0.0.0.0:2222->22/tcp`.
+
 
 8) Persistencia (Volumen compartido)
 - Que demuestra:
-- Evidencia:
+- Evidencia: evidencia cruzada (Filezilla + navegador) demostrando que lo subido al SFTP se ve en la web (por ejemplo `localhost:8080`).
+
 
 9) Despliegue multi-sitio
 - Que demuestra:
-- Evidencia:
+- Evidencia:  captura del navegador en `http://localhost:8080/reloj` mostrando el reloj funcionando.
+
 
 ### Fase 4: Seguridad HTTPS
 
 10) Cifrado SSL
 - Que demuestra:
-- Evidencia:
+- Evidencia: captura del navegador accediendo por `https://...` mostrando el candado (o alerta de certificado autofirmado) y el puerto configurado (ej. `8443`).
+
 
 11) Redireccion forzada
 - Que demuestra:
-- Evidencia:
+- Evidencia:  captura de la pestaña Network (DevTools) mostrando `301 Moved Permanently` al intentar entrar por HTTP.
+
 
 ---
 

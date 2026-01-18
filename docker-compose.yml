@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx:stable
+    container_name: f41_nginx
+    ports:
+      - "8080:80"
+      - "8443:443"
+    volumes:
+      # Contenido web compartido con SFTP
+      - ./practica/site:/usr/share/nginx/html
+      # Configuración de Nginx
+      - ./practica/nginx/configuracion:/etc/nginx/conf.d:ro
+      # Certificados SSL (como directorio para evitar problemas en WSL2)
+      - ./practica/certificado:/etc/nginx/certs:ro
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  sftp:
+    image: atmoz/sftp:latest
+    container_name: f41_sftp
+    ports:
+      - "2222:22"
+    volumes:
+      # Volumen compartido con Nginx
+      - ./practica/site:/home/sftpuser/upload
+    command: sftpuser:password:1001
+    restart: unless-stopped
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
