@@ -41,32 +41,34 @@ Este documento recopila todas las evidencias y respuestas de la practica.
 
 
 6) Permisos de escritura
-- Que demuestra:![](evidencias/evidencia-permiso-de-escritura.png)
+- Que demuestra:![Evidencia ded escritura](evidencias/evidencia-permiso-de-escritura.png)
 - Evidencia: captura de Filezilla mostrando la transferencia completada o los archivos ya presentes en el servidor remoto.
 
 
 ### Fase 3: Infraestructura Docker
 
 7) Contenedores activos
-- Que demuestra:
-- Comando:
+- Que demuestra:![evidencias docker activos](evidencias/evidencias-docker.png)
+- Comando: docker-compose ps 
 - Evidencia: captura de `docker compose ps` donde se vean los dos servicios con estado Up y los puertos `0.0.0.0:8080->80/tcp` y `0.0.0.0:2222->22/tcp`.
 
 
 8) Persistencia (Volumen compartido)
 - Que demuestra:
+![Evidencias txt FilleZilla](evidencias/evidencia-prueba.txt-FilleZilla.png)
+![Evidencias txt FilleZilla](evidencias/evidencias-prueba.txt-pagina-web.png)
 - Evidencia: evidencia cruzada (Filezilla + navegador) demostrando que lo subido al SFTP se ve en la web (por ejemplo `localhost:8080`).
 
 
 9) Despliegue multi-sitio
-- Que demuestra:
+- Que demuestra:![Despliegue Multisitio](evidencias/evidencias-multisitio.png)
 - Evidencia:  captura del navegador en `http://localhost:8080/reloj` mostrando el reloj funcionando.
 
 
 ### Fase 4: Seguridad HTTPS
 
 10) Cifrado SSL
-- Que demuestra:
+- Que demuestra:![Cifrado SSL](evidencias/evidencias-cifrado-LSS.png)
 - Evidencia: captura del navegador accediendo por `https://...` mostrando el candado (o alerta de certificado autofirmado) y el puerto configurado (ej. `8443`).
 
 

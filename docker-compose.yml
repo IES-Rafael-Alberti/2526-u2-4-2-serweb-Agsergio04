@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   nginx:
     image: nginx:stable
@@ -14,6 +12,9 @@ services:
       - ./practica/nginx/configuracion:/etc/nginx/conf.d:ro
       # Certificados SSL (como directorio para evitar problemas en WSL2)
       - ./practica/certificado:/etc/nginx/certs:ro
+
+      - ./practica/site:/usr/share/nginx/html 
+      - ./practica/site:/home/sftpuser/upload
     restart: unless-stopped
     networks:
       - app-network
