@@ -105,7 +105,7 @@ A partir de aqui, TODO lo que hagas debe quedar documentado en DESPLIEGUE.md con
 
 ### Tarea
 1. Localiza en el contenedor los fragmentos relevantes de /etc/nginx/nginx.conf donde aparezcan:
-- worker_processes
+- worker_processes :
 - worker_connections
 - access_log
 - error_log

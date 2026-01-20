@@ -12,6 +12,8 @@ services:
       - ./practica/nginx/configuracion:/etc/nginx/conf.d:ro
       # Certificados SSL (como directorio para evitar problemas en WSL2)
       - ./practica/certificado:/etc/nginx/certs:ro
+      # Configuración de Gzip
+      - ./gzip.conf:/etc/nginx/conf.d/gzip.conf:ro
 
       - ./practica/site:/usr/share/nginx/html 
       - ./practica/site:/home/sftpuser/upload
