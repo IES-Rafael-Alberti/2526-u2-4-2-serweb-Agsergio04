@@ -380,7 +380,7 @@ Se usa por varias razones el redireccionar el HTTP -> 8080 a HTTPS -> 8443 por v
   - evidencias/j-01-logs-follow.png
   ![evidencias/j-01-logs-follow.png](evidencias/j-01-logs-follow.png)
   - evidencias/j-02-metricas.png
-  ![evidencias/j-02-metricas.png]evidencias/j-02-metricas.png()
+  ![evidencias/j-02-metricas.png](evidencias/j-02-metricas.png)
 
 ### h) Ajustes para implantacion de apps
 - Respuesta:
@@ -395,17 +395,52 @@ Al subir archivos por SFTP, estos quedan con permisos restrictivos y Nginx no pu
 
 ### i) Virtualizacion en despliegue
 - Respuesta:
+Al instalar Nignx en el SO host mediante gestores de paquetes,este se integra completamente con el sistema de archivos, librerías compartidas y servicios del sistema sin aislamiento y con baja portabilidad entre entornos.
+
+Por otro lado  los contenedor pueden destruirse y recrearse instantáneamente sin perder datos, ya que la configuración y contenido residen en volúmenes externos montados desde el host, garantizando portabilidad total y entornos reproducibles
 - Evidencias:
   - evidencias/i-01-compose-ps.png
   ![evidencias/i-01-compose-ps.png](evidencias/i-01-compose-ps.png)
 
 ### j) Logs: monitorizacion y analisis
 - Respuesta:
+1. Genera trafico y errores 404:
+```bash
+for i in $(seq 1 20); do curl -s -o /dev/null http://localhost:8080/; done
+for i in $(seq 1 10); do curl -s -o /dev/null http://localhost:8080/no-existe-$i; done
+```
+
+2. Monitoriza en tiempo real:
+```bash
+docker compose logs -f web
+```
+
+3. Extrae metricas basicas (top URLs, codigos, 404) desde el contenedor:
+```bash
+docker compose exec web sh -c "awk '{print \$7}' /var/log/nginx/access.log | sort | uniq -c | sort -nr | head"
+docker compose exec web sh -c "awk '{print \$9}' /var/log/nginx/access.log | sort | uniq -c | sort -nr | head"
+docker compose exec web sh -c "awk '\$9==404 {print \$7}' /var/log/nginx/access.log | sort | uniq -c | sort -nr | head"
+```
 - Evidencias:
   - evidencias/j-01-logs-follow.png
   ![evidencias/j-01-logs-follow.png](evidencias/j-01-logs-follow.png)
+
+  ```bash
+    docker compose logs -f nginx
+  ```
   - evidencias/j-02-metricas.png
-  ![evidencias/j-02-metricas.png]evidencias/j-02-metricas.png()
+  ![evidencias/j-02-metricas.png](evidencias/j-02-metricas.png)
+
+  ```
+  docker compose exec nginx sh -c "awk '{print \$7}' /var/log/nginx/access.log | sort | uniq -c | sort -nr | head"
+  docker compose exec nginx sh -c "awk '{print \$9}' /var/log/nginx/access.log | sort | uniq -c | sort -nr | head"
+  docker compose exec nginx sh -c "awk '\$9==404 {print \$7}' /var/log/nginx/access.log | sort | uniq -c | sort -nr | head"
+
+  docker compose exec nginx sh -c "awk '{print \$7}' /var/log/nginx/access.log | sort | uniq -c | sort -nr | head" > evidencias/j-02-top-urls.txt
+  docker compose exec nginx sh -c "awk '{print \$9}' /var/log/nginx/access.log | sort | uniq -c | sort -nr | head" > evidencias/j-02-top-codes.txt
+  docker compose exec nginx sh -c "awk '\$9==404 {print \$7}' /var/log/nginx/access.log | sort | uniq -c | sort -nr | head" > evidencias/j-02-top-404.txt
+  docker compose exec nginx sh -c "tail -n 200 /var/log/nginx/access.log" > evidencias/
+  ```
 
 ---
 
